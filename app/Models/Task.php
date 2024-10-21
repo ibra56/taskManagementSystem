@@ -27,7 +27,7 @@ class Task extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function priority()
+    public function priorities()
     {
         return $this->belongsTo(Priorities::class);
     }

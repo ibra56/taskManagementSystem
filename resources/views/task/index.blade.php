@@ -12,7 +12,7 @@
             @forelse ($tasks as $task)
                 <div class="p-6 mb-4 bg-white shadow sm:rounded-lg border border-gray-200 flex justify-between items-center">
                     <!-- Task Information -->
-                    <div>
+                    <a href="{{ route('tasks.show', $task) }}">
                         <h3 class="text-xl font-bold text-gray-800">{{ $task->title }}</h3>
                         <p class="text-gray-600">{{ $task->description }}</p>
 
@@ -26,21 +26,17 @@
                             <span class="text-sm text-gray-500">Created: {{ $task->created_at->format('M d, Y') }}</span>
                             <span class="text-sm text-gray-500">Deadline: {{ $task->deadline }}</span>
                         </div>
-                    </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex space-x-2">
-                        <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-600 hover:text-blue-800">Edit</a>
-                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
-                        </form>
-                    </div>
+                    </a>
                 </div>
+               
             @empty
                 <p class="text-center text-gray-500">No tasks found</p>
             @endforelse
+            <div class="mt-4">
+                {{ $tasks->links() }}
+                </div>
         </div>
+        
     </div>
 </x-app-layout>

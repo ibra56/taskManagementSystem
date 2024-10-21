@@ -21,7 +21,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::latest()->cursorPaginate(4);
         return view('task.index', compact('tasks'));
     }
 
@@ -46,7 +46,9 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::find($id);
+        // dd($task);
+        return view('task.show', compact('task'));
         
     }
 
@@ -56,6 +58,8 @@ class TaskController extends Controller
     public function edit(string $id)
     {
         //
+        $task = Task::find($id);
+        return view('task.edit', compact('task'));
     }
 
     /**
