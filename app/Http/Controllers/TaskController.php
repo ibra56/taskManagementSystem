@@ -46,11 +46,11 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|unique:tasks',
+            'description' => 'nullable|sometimes',
             'category_id' => 'required',
             'priorities_id' => 'required',
-            'deadline' => 'required',
+            'deadline' => 'required|date|after:now',
         ]);
         Task::create([
             'title' => $request->title,
@@ -96,7 +96,17 @@ class TaskController extends Controller
     public function update(Request $request, string $id)
     {
         $task = Task::find($id);
-        $task->update($request->all());
+        $attributes = $request->validate([
+            'title' => 'required',
+            'description' => 'nullable|sometimes',
+            'category_id' => 'required',
+            'priorities_id' => 'required',
+            'deadline' => 'required',
+            'status' => 'required',
+
+        ]);
+        // dd($request->all());
+        $task->update($attributes);
         return redirect()->route('task.index');
     }
 

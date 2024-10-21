@@ -11,6 +11,7 @@
                     <form action="{{ route('tasks.update', $task->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
+                        
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
                                 Title
@@ -18,6 +19,7 @@
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="title" id="title" type="text" placeholder="Title" value="{{ $task->title }}">
+                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
@@ -26,6 +28,7 @@
                             <textarea
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="description" id="description" type="text" placeholder="Description">{{ $task->description }}</textarea>
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
@@ -37,6 +40,7 @@
                                 <option value="pending">Pending</option>
                                 <option value="completed">Completed</option>
                             </select>
+                            <x-input-error :messages="$errors->get('status')" class="mt-2" />
                         </div>
                         <div class="flex justify-between w-full space-x-4">
                         <div class="mb-4 w-1/2">
@@ -49,7 +53,8 @@
                                     <option value="{{ $category->id }}" {{ $task->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                        </select>
+                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
+                        {{-- </select> --}}
                         </div>
                         <div class="mb-4 w-1/2">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="priority">
@@ -60,6 +65,7 @@
                                     <option value="{{ $priority->id }}" {{ $task->priority_id == $priority->id ? 'selected' : '' }}>{{ $priority->priority }}</option>
                                 @endforeach
                             </select>
+                            <x-input-error :messages="$errors->get('priorities_id')" class="mt-2" />
                         </div>
                         </div>
                         <div class="mb-4">
@@ -69,6 +75,7 @@
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="deadline" id="deadline" type="datetime" value="{{ $task->deadline }}">
+                                <x-input-error :messages="$errors->get('deadline')" class="mt-2" />
                         </div>
                         
                         <div class="flex items-center justify-between">
