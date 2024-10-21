@@ -2,9 +2,13 @@
     <div class="py-12">
         <div>
             <x-slot name="header">
+                <div class="flex justify-between w-full">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('Tasks') }}
                 </h2>
+                <div class="mt-4">
+                    <a href="{{ route('tasks.create') }}" class="text-indigo-600 hover:text-indigo-900">Create Task</a>
+                </div>
             </x-slot>
         </div>
 

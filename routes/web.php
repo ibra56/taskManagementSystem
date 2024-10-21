@@ -18,9 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/task', [TaskController::class, 'index'])->name('task.index');
     Route::get('/task/show/{id}', [TaskController::class, 'show'])->name('tasks.show');
     Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->name('tasks.edit');
-    Route::post('/task/delete/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    Route::delete('/task/delete/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     Route::patch('/task/update/{id}', [TaskController::class, 'update'])->name('tasks.update');
-
+    Route::get('/task/create', [TaskController::class, 'create'])->name('tasks.create');
+    Route::post('/task/store', [TaskController::class, 'store'])->name('tasks.store');
 });
 
 
