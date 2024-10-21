@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/task/show/{id}', [TaskController::class, 'show'])->name('tasks.show');
     Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->name('tasks.edit');
     Route::post('/task/delete/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
-    Route::post('/task/update/{id}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::patch('/task/update/{id}', [TaskController::class, 'update'])->name('tasks.update');
 
 });
 

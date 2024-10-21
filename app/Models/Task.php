@@ -14,7 +14,7 @@ class Task extends Model
         'title',
         'description',
         'status',
-        'priority_id',
+        'priorities_id',
         'category_id',
         'user_id',
         'deadline'

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Priorities;
 
 class TaskController extends Controller
 {
@@ -59,7 +61,12 @@ class TaskController extends Controller
     {
         //
         $task = Task::find($id);
-        return view('task.edit', compact('task'));
+        return view('task.edit', [  
+            'task' => $task,
+            'priorities' => Priorities::all(),
+            'categories' => Category::all(),
+        ]);
+
     }
 
     /**
@@ -67,7 +74,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $task = Task::find($id);
+        $task->update($request->all());
+        return redirect()->route('task.index');
     }
 
     /**
