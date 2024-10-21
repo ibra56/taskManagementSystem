@@ -12,10 +12,10 @@ class TaskController extends Controller
     public function __construct(public $created_at)
     { }
 
-    public function __invoke()
-    {
-        return $this->hello . ' ' . $this->created_at;
-    }
+    // public function __invoke()
+    // {
+    //     return $this->hello . ' ' . $this->created_at;
+    // }
     /**
      * Display a listing of the resource.
      */
