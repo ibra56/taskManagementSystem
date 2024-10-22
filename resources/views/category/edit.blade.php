@@ -11,11 +11,13 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between items-center mb-4 border-b pb-4">
                             <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="window.history.back()">Back</button>
+                            @can('delete', $category)
                             <form action="{{ route('category.delete', $category) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
                             </form>
+                            @endcan 
                     </div>
                     <div class="flex flex-col">
                         <h3 class="text-2xl font-bold text-gray-800">{{ $category->name }}</h3>

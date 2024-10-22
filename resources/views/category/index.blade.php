@@ -13,8 +13,14 @@
         @forelse ($categories as $category)
         <a href="{{ route('category.edit', $category) }}">
             <div class="p-6 mb-4 bg-white shadow sm:rounded-lg border border-gray-200 flex justify-between items-center">
-                
+                    <div class="flex flex-col">
                     <h3 class="text-xl font-bold text-gray-800">{{ $category->name }}</h3>
+                    <p class="text-gray-600">{{ $category->description }}</p>
+                </div>
+                    <div>
+                    <p class="text-gray-600">Created: {{ $category->created_at->format('M d, Y') }}</p>
+                    <p class="text-gray-600">Updated: {{ $category->updated_at->format('M d, Y') }}</p>
+                </div>
                
             </div>
         </a>
