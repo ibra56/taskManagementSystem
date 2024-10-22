@@ -7,7 +7,7 @@
                     {{ __('Tasks') }}
                 </h2>
                 <div class="mt-4">
-                    <a href="{{ route('tasks.create') }}" class="text-indigo-600 hover:text-indigo-900">Create Task</a>
+                    <a href="{{ route('tasks.create') }}" class="text-indigo-600 hover:text-indigo-900 border border-gray-200 rounded p-2 bg-gray-100 hover:bg-gray-200">Create Task</a>
                 </div>
             </x-slot>
         </div>

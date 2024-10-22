@@ -14,10 +14,13 @@
                     {{-- <h3 class="text-2xl font-bold text-gray-800">{{ $task->title }}</h3> --}}
                     <div></div>
                     <div class="flex items-center space-x-4">
+                        @can('edit', $task)
                         <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-600 hover:text-blue-800 font-semibold uppercase border border-gray-200 rounded p-2 bg-gray-100" hover:bg-gray-200>
                             Edit
                         </a>
+                        @endcan
                     <!-- Delete Button -->
+                    @can('delete', $task)
                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?');">
                         @csrf
                         @method('DELETE')
@@ -28,8 +31,9 @@
                         <button type="submit" class="text-red-600 hover:text-red-800 font-semibold uppercase">
                             Delete
                         </button>
-                    </div>
+                        </div>
                     </form>
+                    @endcan
                     </div>
                 </div>
 

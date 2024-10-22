@@ -67,9 +67,8 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        $task = Task::find($id);
         // dd($task);
         return view('task.show', compact('task'));
         
@@ -78,24 +77,23 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-        $task = Task::find($id);
-        return view('task.edit', [  
-            'task' => $task,
-            'priorities' => Priorities::all(),
-            'categories' => Category::all(),
-        ]);
+    public function edit(Task $task)
+{
+    // No need to use Task::find() since route model binding will handle it
+    return view('task.edit', [
+        'task' => $task,
+        'priorities' => Priorities::all(),
+        'categories' => Category::all(),
+    ]);
+}
 
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
-        $task = Task::find($id);
+       
         $attributes = $request->validate([
             'title' => 'required',
             'description' => 'nullable|sometimes',
@@ -113,9 +111,8 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        $task = Task::find($id);
         $task->delete();
         return redirect()->route('task.index');
     }
