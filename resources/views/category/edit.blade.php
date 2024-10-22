@@ -41,9 +41,12 @@
                         <label for="description">Description</label>
                         <input type="text" name="description" id="description" class="border border-gray-300 p-2 rounded" value="{{ $category->description }}">
                     </div>
+                    @can('update', $category)
                     <div class="flex justify-end mt-4">
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
                     </div>
+                    @endcan
+                   
                 </form>
 
             </div>
