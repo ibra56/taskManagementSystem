@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// index task 
+// Task routes
 Route::middleware('auth')->group(function () {
     Route::get('/task', [TaskController::class, 'index'])->name('task.index');
     Route::get('/task/show/{task}', [TaskController::class, 'show'])->name('tasks.show');
@@ -25,6 +26,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/task/update/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::get('/task/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/task/store', [TaskController::class, 'store'])->name('tasks.store');
+});
+
+// Category routes
+Route::middleware('auth')->group(function () {
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::patch('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy'])->name('category.delete');
 });
 
 
