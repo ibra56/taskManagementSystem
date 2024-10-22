@@ -5,8 +5,8 @@
         </h2>
         
     </x-slot>
-    <div class="py-12 flex justify-between">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-12  justify-between">
+        <div class="full mx-auto sm:px-6 lg:px-8">
             <!-- Task Card -->
             <div class="p-6 bg-white shadow sm:rounded-lg border border-gray-200">
                 <!-- Task Title -->
@@ -102,11 +102,27 @@
                         
                     </div>
                 </div>
+                 {{-- Attachments --}}
+                 <div class="mt-4 border-t border-b border-gray-200 py-4 bg-gray-50">
+                    <p class="text-gray-600 uppercase">Attachments:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        @forelse ($task->attachments as $attachment)
+                        <a href="{{ Storage::url($attachment->file_path) }}" target="_blank">
+                            <div class="p-4 bg-white border border-gray-200 rounded">
+                                <p class="text-gray-600">{{ $attachment->file_name }}</p>
+                            </div>
+                        </a>
+                        @empty
+                        <p class="text-gray-600">No attachments found</p>
+                        @endforelse
+                    </div>
+                </div>
+                
             </div>
         
-            <div>
-                {{ $task }}
-            </div>  
+            {{-- <div> --}}
+               
+            {{-- </div>   --}}
         </div>
        
     </div>

@@ -31,4 +31,8 @@ class Task extends Model
     {
         return $this->belongsTo(Priorities::class);
     }
+    public function attachments()
+    {
+        return $this->hasMany(TaskAttachment::class);
+    }
 }

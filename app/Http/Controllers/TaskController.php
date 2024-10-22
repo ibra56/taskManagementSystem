@@ -69,7 +69,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        // dd($task);
+        $task = Task::with('attachments')->find($task->id);
         return view('task.show', compact('task'));
         
     }
@@ -116,4 +116,7 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('task.index');
     }
+
+    
+   
 }

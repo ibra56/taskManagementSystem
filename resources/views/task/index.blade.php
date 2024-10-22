@@ -32,6 +32,10 @@
                         </div>
 
                     </a>
+                    <!-- Task Actions -->
+                    {{-- <div class="">
+                        <a href="{{ route('tasks.attach', $task) }}" class="text-indigo-600 hover:text-indigo-900 border border-gray-200 rounded p-2 bg-gray-100 hover:bg-gray-200">Attach File</a>
+                    </div>   --}}
                 </div>
                
             @empty

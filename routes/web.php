@@ -6,10 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TaskController;
 use App\Models\Task;
-
-
-
-
+use App\Models\TaskAttachment;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/task/update/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::get('/task/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/task/store', [TaskController::class, 'store'])->name('tasks.store');
+    Route::get('/task/attach/{task}', [TaskController::class, 'attach'])->name('tasks.attach');
 });
 
 // Category routes
@@ -37,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update')->can('update', 'category');
     Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy'])->name('category.delete')->can('delete', 'category');
 });
+
+
 
 
 Route::get('/dashboard', function () {

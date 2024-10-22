@@ -9,4 +9,15 @@ class TaskAttachment extends Model
 {
     /** @use HasFactory<\Database\Factories\TaskAttachmentFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'task_id',
+        'file_path',
+        'file_name',
+    ];
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
 }

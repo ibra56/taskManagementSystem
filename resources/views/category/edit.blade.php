@@ -27,9 +27,10 @@
                 </div>
                 
             </div>
+            @can('update', $category)
             <div class="flex flex-col bg-gray-200 mt-4 rounded p-4">
                 <h3 class="text-xl font-bold text-gray-800 mb-4 uppercase">Edit Category</h3>
-
+                
                 <form action="{{ route('category.update', $category) }}" method="POST">
                     @csrf
                     @method('PATCH')
@@ -41,15 +42,14 @@
                         <label for="description">Description</label>
                         <input type="text" name="description" id="description" class="border border-gray-300 p-2 rounded" value="{{ $category->description }}">
                     </div>
-                    @can('update', $category)
+                    
                     <div class="flex justify-end mt-4">
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
                     </div>
-                    @endcan
-                   
                 </form>
 
             </div>
+            @endcan
         </div>
     </div>
 </x-app-layout>
